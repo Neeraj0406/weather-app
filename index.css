@@ -1,0 +1,146 @@
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+
+
+.main_container{
+    background-color: #98AFC7;
+    width:450px;
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: 10px 0px 10px #D5D8DC , -10px 0px 10px #D5D8DC ,0px 10px 10px #D5D8DC ,0px -10px 10px #D5D8DC  ;
+    overflow: hidden;
+    position: relative;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100vh;
+    overflow: hidden;
+}
+.icon_container{
+    
+    height:200px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+
+}
+.fa-sun{
+ 
+    transform: scale(2,2);
+   
+    animation-name:sunny;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    
+    
+}
+@keyframes sunny {
+    0%{
+        transform: scale(2.5,2.5);
+    }
+    50%{
+        transform: scale(5,5);
+    }
+    100%{
+        transform: scale(2.5,2.5);
+    }
+}
+
+.location, .curTime , .temperature , .tempMinMax{
+    text-align: center;
+    
+    
+} 
+
+.temperature{
+    padding-top:15px;
+}
+
+
+
+#wave1{
+    background-color: whitesmoke;
+    height: 600px;
+    width: 600px;
+    position: absolute;
+    border-radius:40%;
+    bottom: -280px;
+    left: -90px;
+    opacity: 0.1;
+    /* animation: wave1 15s linear infinite; */
+    animation-name: wave1;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-duration: 15s;
+    overflow: hidden;
+    z-index:1;
+
+}
+@keyframes wave1 {
+    from{
+        transform: rotate(0deg)
+    }
+    to{
+        transform: rotate(360deg);
+    }
+
+    
+}
+#wave2{
+    background-color: whitesmoke;
+    height: 600px;
+    width: 600px;
+    position: absolute;
+    border-radius: 40%;
+    
+    opacity: 0.1;
+    bottom: -290px;
+    left: -90px;
+    animation-name: wave2;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    z-index:2;
+}
+@keyframes wave2 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#wave3 {
+    background-color: whitesmoke;
+    height: 600px;
+    width: 600px;
+    position: absolute;
+    border-radius: 50%;
+    bottom: -270px;
+    left: -90px;
+    opacity: 0.1;
+    /* animation: wave3 23s linear infinite; */
+    animation-name: wave3;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    z-index: 3;
+}
+
+@keyframes wave3 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wheater app</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+
+
+.main_container{
+    background-color: #98AFC7;
+    width:450px;
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: 10px 0px 10px #D5D8DC , -10px 0px 10px #D5D8DC ,0px 10px 10px #D5D8DC ,0px -10px 10px #D5D8DC  ;
+    overflow: hidden;
+    position: relative;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100vh;
+    overflow: hidden;
+}
+.icon_container{
+    
+    height:200px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+
+}
+.fa-sun{
+ 
+    transform: scale(2,2);
+   
+    animation-name:sunny;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    
+    
+}
+@keyframes sunny {
+    0%{
+        transform: scale(2.5,2.5);
+    }
+    50%{
+        transform: scale(5,5);
+    }
+    100%{
+        transform: scale(2.5,2.5);
+    }
+}
+
+.location, .curTime , .temperature , .tempMinMax{
+    text-align: center;
+    
+    
+} 
+
+.temperature{
+    padding-top:15px;
+}
+
+
+
+#wave1{
+    background-color: whitesmoke;
+    height: 600px;
+    width: 600px;
+    position: absolute;
+    border-radius:40%;
+    bottom: -280px;
+    left: -90px;
+    opacity: 0.1;
+    /* animation: wave1 15s linear infinite; */
+    animation-name: wave1;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-duration: 15s;
+    overflow: hidden;
+    z-index:1;
+
+}
+@keyframes wave1 {
+    from{
+        transform: rotate(0deg)
+    }
+    to{
+        transform: rotate(360deg);
+    }
+
+    
+}
+#wave2{
+    background-color: whitesmoke;
+    height: 600px;
+    width: 600px;
+    position: absolute;
+    border-radius: 40%;
+    
+    opacity: 0.1;
+    bottom: -290px;
+    left: -90px;
+    animation-name: wave2;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    z-index:2;
+}
+@keyframes wave2 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#wave3 {
+    background-color: whitesmoke;
+    height: 600px;
+    width: 600px;
+    position: absolute;
+    border-radius: 50%;
+    bottom: -270px;
+    left: -90px;
+    opacity: 0.1;
+    /* animation: wave3 23s linear infinite; */
+    animation-name: wave3;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    z-index: 3;
+}
+
+@keyframes wave3 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="main_container">
+
+            <div id="wave1" class="wave"> </div>
+            <div id="wave2" class="wave"> </div>
+            <div id="wave3" class="wave"> </div>
+
+        
+        <div class="icon_container">
+
+            <div class="icons"> <i class="fas fa-sun" style="color: yellow"></i> </div>
+        </div>
+        
+            <h1 class="location"> {%location%} , {%country%}</h1>
+            <h3 class="curTime" id="timeField"> wed / oct 5 / 10:23</h3>
+            
+            <h1 class="temperature"> {%tempval%} &deg;C</h1>
+            <h3 class="tempMinMax"> min temp {%tempmin%}&deg;C | max temp {%tempmax%}&deg;C</h3>
+
+        
+
+    </div>
+
+    <script>
+        
+        let curTime = document.querySelector(".curTime")
+        
+        const getTime = () =>{
+            let dateObj = new Date();
+            let weaks = ['sun', 'mon' , 'tue', 'wed', 'thr', 'fri', 'sat']
+            let curDay = weaks[dateObj.getDay()]
+            let curDate = dateObj.getDate().toLocaleString();
+            
+            let months = ['jan', 'feb', 'mar', 'apr', 'may','jun' ,'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+            let curMonth = months[dateObj.getMonth()]
+            
+            let curHours = dateObj.getHours().toLocaleString();
+            
+            let curMin = dateObj.getMinutes().toLocaleString();
+            
+            let period = "AM"
+            if(curHours > 12){
+                period = "PM"
+                curHours = curHours-12
+
+            }  
+
+            return `${curDay} | ${curMonth} ${curDate} | ${curHours}:${curMin}${period} `  ; 
+        }
+        
+        curTime.innerHTML = getTime()
+        
+    </script>
+
+
+
+
+</body>
+</html>
+
+
+// <!-- https://api.openweathermap.org/data/2.5/weather?q=Jaipur&units=metric&appid=6e59b47e7e8a658ade90cbbcea04e36d -->
